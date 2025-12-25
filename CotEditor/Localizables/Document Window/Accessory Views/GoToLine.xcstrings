@@ -93,6 +93,12 @@
             "state" : "translated",
             "value" : "跳轉"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前往"
+          }
         }
       }
     },
@@ -184,6 +190,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行號"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "行號"
@@ -281,6 +293,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "行："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行:"
           }
         }
       }

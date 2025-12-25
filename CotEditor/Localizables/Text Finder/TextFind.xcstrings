@@ -880,6 +880,12 @@
             "state" : "translated",
             "value" : "清除"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清除"
+          }
         }
       }
     },
@@ -1165,6 +1171,12 @@
             "state" : "translated",
             "value" : "關閉"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "關閉"
+          }
         }
       }
     },
@@ -1355,6 +1367,12 @@
             "state" : "translated",
             "value" : "尋找"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尋找"
+          }
         }
       }
     },
@@ -1450,6 +1468,12 @@
             "state" : "translated",
             "value" : "尋找與取代"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尋找與取代"
+          }
         }
       }
     },
@@ -1541,6 +1565,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尋找全部"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "尋找全部"
@@ -2606,6 +2636,24 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "找不到"
+                }
+              }
+            }
+          }
+        },
+        "zh-HK" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%lld matches"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "未找到"
                 }
               }
             }

@@ -1040,6 +1040,12 @@
             "state" : "translated",
             "value" : "編碼變更為「%@」"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "變更編碼為「%@」"
+          }
         }
       }
     },
@@ -5000,6 +5006,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文字大小"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "文字大小"

@@ -1900,6 +1900,12 @@
             "state" : "translated",
             "value" : "文法定義"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "語法"
+          }
         }
       }
     },

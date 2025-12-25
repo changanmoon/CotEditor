@@ -188,6 +188,12 @@
             "state" : "translated",
             "value" : "副檔名"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "副檔名"
+          }
         }
       }
     },
@@ -283,6 +289,12 @@
             "state" : "translated",
             "value" : "檔名"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檔案名稱"
+          }
         }
       }
     },
@@ -377,6 +389,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "直譯器"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "解譯器"
           }
         }
       }

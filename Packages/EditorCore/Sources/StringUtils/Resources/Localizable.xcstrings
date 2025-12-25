@@ -589,6 +589,12 @@
             "state" : "translated",
             "value" : "NFC"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFC"
+          }
         }
       }
     },
@@ -786,6 +792,12 @@
             "state" : "translated",
             "value" : "NFD"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFD"
+          }
         }
       }
     },
@@ -979,6 +991,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKC"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKC"
@@ -1373,6 +1391,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKD"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKD"

@@ -93,6 +93,12 @@
             "state" : "translated",
             "value" : "Beta"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beta"
+          }
         }
       }
     },
@@ -183,6 +189,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "繼續"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "繼續"
@@ -1196,6 +1208,12 @@
             "state" : "translated",
             "value" : "版本附註"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "版本備註"
+          }
         }
       }
     },
@@ -1287,6 +1305,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor %@的新功能"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor %@的新功能"

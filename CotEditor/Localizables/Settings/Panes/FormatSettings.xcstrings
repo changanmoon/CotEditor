@@ -374,6 +374,12 @@
             "state" : "translated",
             "value" : "預設的文法定義："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "預設語法:"
+          }
         }
       }
     },
@@ -752,6 +758,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯⋯"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "編輯⋯"

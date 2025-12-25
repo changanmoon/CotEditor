@@ -92,6 +92,12 @@
             "state" : "translated",
             "value" : "清除最近項目"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清除最近項目"
+          }
         }
       }
     },
@@ -1603,6 +1609,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "示例："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "範例:"
           }
         }
       }

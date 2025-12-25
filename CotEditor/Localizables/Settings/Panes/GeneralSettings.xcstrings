@@ -280,6 +280,12 @@
             "state" : "translated",
             "value" : "命令列工具："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "命令列工具:"
+          }
         }
       }
     },

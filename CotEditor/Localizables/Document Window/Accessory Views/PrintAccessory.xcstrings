@@ -1061,6 +1061,12 @@
             "state" : "translated",
             "value" : "行號"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行號"
+          }
         }
       }
     },
@@ -2048,6 +2054,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "主題"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "主題"

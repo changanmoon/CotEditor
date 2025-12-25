@@ -282,6 +282,12 @@
             "state" : "translated",
             "value" : "%@："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@:"
+          }
         }
       }
     },
@@ -2793,6 +2799,12 @@
             "state" : "translated",
             "value" : "IC"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IC"
+          }
         }
       }
     },
@@ -4023,6 +4035,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RE"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "RE"

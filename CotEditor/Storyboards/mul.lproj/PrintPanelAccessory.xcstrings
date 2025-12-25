@@ -202,6 +202,12 @@
             "state" : "translated",
             "value" : "字體大小"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文字大小"
+          }
         }
       }
     },

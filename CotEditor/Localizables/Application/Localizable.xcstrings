@@ -93,6 +93,12 @@
             "state" : "translated",
             "value" : "（%@）"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " (%@)"
+          }
         }
       }
     },
@@ -187,6 +193,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@:"
           }
         }
       }
@@ -289,6 +301,12 @@
             "state" : "translated",
             "value" : "%1$@：%2$@"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@"
+          }
         }
       }
     },
@@ -386,6 +404,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "加入"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "加入"
@@ -491,6 +515,12 @@
             "state" : "translated",
             "value" : "加入新項目"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "加入新項目"
+          }
         }
       }
     },
@@ -588,6 +618,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "刪除"
@@ -794,6 +830,12 @@
             "state" : "translated",
             "value" : "複製"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "製作副本"
+          }
         }
       }
     },
@@ -895,6 +937,12 @@
             "state" : "translated",
             "value" : "拷貝「%@」"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "製作「%@」的副本"
+          }
         }
       }
     },
@@ -992,6 +1040,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "編輯"
@@ -1097,6 +1151,12 @@
             "state" : "translated",
             "value" : "輸出⋯"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輸出⋯"
+          }
         }
       }
     },
@@ -1194,6 +1254,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輸出「%@」⋯"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "輸出「%@」⋯"
@@ -2410,6 +2476,12 @@
             "state" : "translated",
             "value" : "咖啡杯"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "咖啡杯"
+          }
         }
       }
     },
@@ -2512,6 +2584,12 @@
             "state" : "translated",
             "value" : "動作"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "動作"
+          }
         }
       }
     },
@@ -2609,6 +2687,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "取消"
@@ -10712,6 +10796,12 @@
             "state" : "translated",
             "value" : "好"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "好"
+          }
         }
       }
     },
@@ -13231,6 +13321,12 @@
             "state" : "translated",
             "value" : "無"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無"
+          }
         }
       }
     },
@@ -13732,6 +13828,12 @@
             "state" : "translated",
             "value" : "未命名"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未命名"
+          }
         }
       }
     },
@@ -13826,6 +13928,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "未命名檔案夾"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未命名資料夾"
           }
         }
       }
@@ -13928,6 +14036,12 @@
             "state" : "translated",
             "value" : "保留CotEditor編輯的內容"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保留CotEditor編輯的版本"
+          }
         }
       }
     },
@@ -14025,6 +14139,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更新"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "更新"

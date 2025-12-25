@@ -1789,6 +1789,12 @@
             "state" : "translated",
             "value" : "永不"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "永不"
+          }
         }
       }
     },
@@ -2639,6 +2645,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "顯示："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顯示:"
           }
         }
       }

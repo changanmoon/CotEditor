@@ -483,6 +483,12 @@
             "state" : "translated",
             "value" : "文字編碼"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文字編碼"
+          }
         }
       }
     },
