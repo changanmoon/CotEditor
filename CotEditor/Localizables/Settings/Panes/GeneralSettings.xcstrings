@@ -186,6 +186,12 @@
             "state" : "translated",
             "value" : "自動檢查更新"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自動檢查更新項目"
+          }
         }
       }
     },
@@ -1948,6 +1954,12 @@
             "state" : "translated",
             "value" : "不執行任何動作"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不執行任何動作"
+          }
         }
       }
     },
@@ -2048,6 +2060,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "顯示開啟對話方塊"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顯示開啟󠄁對話框"
           }
         }
       }
@@ -2243,6 +2261,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "啟動時："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在開機時:"
           }
         }
       }
@@ -2527,6 +2551,12 @@
             "state" : "translated",
             "value" : "現在重啟"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "立即重新啟動"
+          }
         }
       }
     },
@@ -2620,6 +2650,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "軟體更新："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "軟件更新:"
           }
         }
       }
@@ -2996,6 +3032,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "當沒有可以開啟的檔案時："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "當沒有其他檔案開啟時："
           }
         }
       }

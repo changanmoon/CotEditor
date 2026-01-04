@@ -712,6 +712,12 @@
             "state" : "translated",
             "value" : "URL 解碼"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL解碼"
+          }
         }
       }
     },
@@ -3490,6 +3496,12 @@
             "state" : "translated",
             "value" : "CotEditor"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor"
+          }
         }
       }
     },
@@ -3592,6 +3604,12 @@
             "state" : "translated",
             "value" : "CotEditor"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor"
+          }
         }
       }
     },
@@ -3690,6 +3708,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "關於CotEditor"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "關於CotEditor"
@@ -4216,6 +4240,12 @@
             "state" : "translated",
             "value" : "列印⋯"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "列印⋯"
+          }
         }
       }
     },
@@ -4630,6 +4660,12 @@
             "state" : "translated",
             "value" : "檔案"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檔案"
+          }
         }
       }
     },
@@ -4728,6 +4764,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輔助說明"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "輔助說明"
@@ -4834,6 +4876,12 @@
             "state" : "translated",
             "value" : "輔助說明"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輔助說明"
+          }
         }
       }
     },
@@ -4932,6 +4980,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor輔助說明"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor輔助說明"
@@ -5854,6 +5908,12 @@
             "state" : "translated",
             "value" : "結束CotEditor"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "結束CotEditor"
+          }
         }
       }
     },
@@ -6160,6 +6220,12 @@
             "state" : "translated",
             "value" : "複製"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "複製"
+          }
         }
       }
     },
@@ -6262,6 +6328,12 @@
             "state" : "translated",
             "value" : "還原"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "還原"
+          }
         }
       }
     },
@@ -6360,6 +6432,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "剪下"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "剪下"
@@ -6568,6 +6646,12 @@
             "state" : "translated",
             "value" : "刪除"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除"
+          }
         }
       }
     },
@@ -6666,6 +6750,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "主題"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "主題"
@@ -6874,6 +6964,12 @@
             "state" : "translated",
             "value" : "貼上"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "貼上"
+          }
         }
       }
     },
@@ -7078,6 +7174,12 @@
             "state" : "translated",
             "value" : "重做"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重做"
+          }
         }
       }
     },
@@ -7176,6 +7278,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "縮放"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "縮放"
@@ -7486,6 +7594,12 @@
             "state" : "translated",
             "value" : "換行"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "換行"
+          }
         }
       }
     },
@@ -7792,6 +7906,12 @@
             "state" : "translated",
             "value" : "文字編碼"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文字編碼"
+          }
         }
       }
     },
@@ -7890,6 +8010,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文字編碼"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "文字編碼"
@@ -7996,6 +8122,12 @@
             "state" : "translated",
             "value" : "文法定義"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "語法"
+          }
         }
       }
     },
@@ -8098,6 +8230,12 @@
             "state" : "translated",
             "value" : "文法定義"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "語法"
+          }
         }
       }
     },
@@ -8199,6 +8337,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "顯示"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顯示方式"
           }
         }
       }
@@ -8403,6 +8547,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "顯示"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顯示方式"
           }
         }
       }
@@ -8710,6 +8860,12 @@
             "state" : "translated",
             "value" : "放大"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "放大"
+          }
         }
       }
     },
@@ -8812,6 +8968,12 @@
             "state" : "translated",
             "value" : "字體"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字體"
+          }
         }
       }
     },
@@ -8910,6 +9072,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字體"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "字體"
@@ -9424,6 +9592,12 @@
             "state" : "translated",
             "value" : "尋找"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尋找"
+          }
         }
       }
     },
@@ -9628,6 +9802,12 @@
             "state" : "translated",
             "value" : "重置"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重設為預設值"
+          }
         }
       }
     },
@@ -9730,6 +9910,12 @@
             "state" : "translated",
             "value" : "文字"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文字"
+          }
         }
       }
     },
@@ -9828,6 +10014,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文字"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "文字"
@@ -10138,6 +10330,12 @@
             "state" : "translated",
             "value" : "Unicode標準化"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicode標準化"
+          }
         }
       }
     },
@@ -10236,6 +10434,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicode標準化"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unicode標準化"
@@ -10749,6 +10953,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "AppleScript指令詞彙"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AppleScript辭典"
           }
         }
       }
@@ -11463,6 +11673,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "抗鋸齒"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "柔邊處理"
           }
         }
       }
@@ -12586,6 +12802,12 @@
             "state" : "translated",
             "value" : "報告問題"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "報告問題"
+          }
         }
       }
     },
@@ -12990,6 +13212,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "直書"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "直書"
@@ -13708,6 +13936,12 @@
             "state" : "translated",
             "value" : "CotEditor的新功能"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor的新功能"
+          }
         }
       }
     },
@@ -13809,6 +14043,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "定位符號寬度"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "定位符號間隔闊度"
           }
         }
       }
@@ -14524,6 +14764,12 @@
             "state" : "translated",
             "value" : "尋找⋯"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尋找⋯"
+          }
         }
       }
     },
@@ -14724,6 +14970,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不允許編輯"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "不允許編輯"
@@ -15138,6 +15390,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor網站"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor網站"
@@ -16060,6 +16318,12 @@
             "state" : "translated",
             "value" : "尋找全部"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尋找全部"
+          }
         }
       }
     },
@@ -16570,6 +16834,12 @@
             "state" : "translated",
             "value" : "書寫方向"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書寫方向"
+          }
         }
       }
     },
@@ -16978,6 +17248,12 @@
             "state" : "translated",
             "value" : "方向"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "方向"
+          }
         }
       }
     },
@@ -17178,6 +17454,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以帶格式文字複製"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "以帶格式文字複製"
@@ -17692,6 +17974,12 @@
             "state" : "translated",
             "value" : "橫書"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "橫書"
+          }
         }
       }
     },
@@ -17892,6 +18180,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尋找"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "尋找"
@@ -18300,6 +18594,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "首字母大寫"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "首字母大寫"
@@ -19018,6 +19318,12 @@
             "state" : "translated",
             "value" : "書寫方向"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書寫方向"
+          }
         }
       }
     },
@@ -19222,6 +19528,12 @@
             "state" : "translated",
             "value" : "精確貼上"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "貼上完全符合的項目"
+          }
         }
       }
     },
@@ -19422,6 +19734,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尋找下一個"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "尋找下一個"
@@ -20445,6 +20763,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文字取代"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文字替代"
           }
         }
       }
@@ -23206,6 +23530,12 @@
             "state" : "translated",
             "value" : "取代文字"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取代文字"
+          }
         }
       }
     },
@@ -23508,6 +23838,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檔案瀏覽器"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "檔案瀏覽器"
@@ -23818,6 +24154,12 @@
             "state" : "translated",
             "value" : "尋找上一個"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尋找上一個"
+          }
         }
       }
     },
@@ -23920,6 +24262,12 @@
             "state" : "translated",
             "value" : "定位符號寬度"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "定位符號間隔闊度"
+          }
         }
       }
     },
@@ -24021,6 +24369,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "逆向排序"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "反向"
           }
         }
       }
@@ -24225,6 +24579,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "URL 編碼"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL編碼"
           }
         }
       }

@@ -568,6 +568,12 @@
             "state" : "translated",
             "value" : "延遲："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "延遲:"
+          }
         }
       }
     },
@@ -1131,6 +1137,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "以"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "縮排寬度:"
           }
         }
       }
@@ -1987,6 +1999,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "空格："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "空白字元:"
           }
         }
       }

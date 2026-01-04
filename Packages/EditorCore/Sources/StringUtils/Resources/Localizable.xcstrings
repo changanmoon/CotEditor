@@ -100,6 +100,12 @@
             "state" : "translated",
             "value" : "非官方的基於NFD的標準化形式與修改後的NFD對應"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "與修改後的NFD相對應的非正式的基於NFC的標準化格式"
+          }
         }
       }
     },
@@ -194,6 +200,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "修改NFC"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已修改的NFC"
           }
         }
       }
@@ -297,6 +309,12 @@
             "state" : "translated",
             "value" : "在HFS+中使用了非官方的基於NFD的標準化形式。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HFS+中使用的非正式的基於NFD的標準化格式"
+          }
         }
       }
     },
@@ -391,6 +409,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "修改NFD"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已修改的NFD"
           }
         }
       }
@@ -493,6 +517,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "以標準等價方式來分解，然後以標準等價重組之"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標準分解，然後標準合成"
           }
         }
       }
@@ -697,6 +727,12 @@
             "state" : "translated",
             "value" : "以標準等價方式來分解"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標準分解"
+          }
         }
       }
     },
@@ -899,6 +935,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "以相容等價方式來分解，然後以標準等價重組之"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "相容性分解，然後標準合成"
           }
         }
       }
@@ -1103,6 +1145,12 @@
             "state" : "translated",
             "value" : "正在NFKC, Case Folding, 並移除預設可忽略編碼點"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "套用NFKC、大小寫折疊與移除預設可忽略的代碼位"
+          }
         }
       }
     },
@@ -1197,6 +1245,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKC Case-Fold"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKC大小寫折疊"
           }
         }
       }
@@ -1299,6 +1353,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "以相容等價方式來分解"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "相容性分解"
           }
         }
       }

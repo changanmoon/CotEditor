@@ -565,6 +565,12 @@
             "state" : "translated",
             "value" : "補全："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完成:"
+          }
         }
       }
     },
@@ -753,6 +759,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "字體："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字體:"
           }
         }
       }
@@ -956,6 +968,12 @@
             "state" : "translated",
             "value" : "標準型"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標準"
+          }
         }
       }
     },
@@ -1046,6 +1064,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "模式"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "模式"
@@ -1145,6 +1169,12 @@
             "state" : "translated",
             "value" : "找不到"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未找到"
+          }
         }
       }
     },
@@ -1239,6 +1269,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "智慧型拷貝/貼上"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "智慧型複製/貼上"
           }
         }
       }
@@ -1712,6 +1748,12 @@
             "state" : "translated",
             "value" : "取代："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "替代項目:"
+          }
         }
       }
     },
@@ -2001,6 +2043,12 @@
             "state" : "translated",
             "value" : "替代文字"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文字替代"
+          }
         }
       }
     },
@@ -2092,6 +2140,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此語法不存在"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "此語法不存在"

@@ -93,6 +93,12 @@
             "state" : "translated",
             "value" : "總是"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "總是"
+          }
         }
       }
     },
@@ -184,6 +190,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自動"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "自動"
@@ -283,6 +295,12 @@
             "state" : "translated",
             "value" : "自動"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自動"
+          }
         }
       }
     },
@@ -376,6 +394,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "改變背景顏色"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更改背景顏色"
           }
         }
       }
@@ -2363,6 +2387,12 @@
             "state" : "translated",
             "value" : "像素"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "像素"
+          }
         }
       }
     },
@@ -2454,6 +2484,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "像素"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "像素"
@@ -2551,6 +2587,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "使用系統設定"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "遵循系統設定"
           }
         }
       }
@@ -2747,6 +2789,12 @@
             "state" : "translated",
             "value" : "空格"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "空格"
+          }
         }
       }
     },
@@ -2838,6 +2886,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "個空格"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "個空格"
@@ -2935,6 +2989,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "狀態列顯示："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "狀態列顯示:"
           }
         }
       }
