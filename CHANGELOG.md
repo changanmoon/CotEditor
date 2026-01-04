@@ -1,12 +1,22 @@
 # Change Log
 
-6.2.1 (unreleased)
+6.2.2 (unreleased)
+--------------------------
+
+### Improvements
+
+- Update the C++ syntax to include .cu and .cuh filename extensions.
+
+
+
+6.2.1 (787)
 --------------------------
 
 ### Improvements
 
 - Improve word deletion to treat periods and colons as word delimiters.
-- [trivial] Tweak the user guide.
+- Update the filter after duplicating a file in the file browser.
+- Update the user guide.
 
 
 ### Fixes

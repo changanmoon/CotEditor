@@ -97,7 +97,7 @@ final class FileNode {
         guard
             let children, !children.isEmpty,
             self.filterState != nil,
-            !sequence(first: self, next: \.parent).lazy.contains(where: { $0.filterState?.matchedRange != nil })
+            !sequence(first: self, next: \.parent).contains(where: { $0.filterState?.matchedRange != nil })
         else { return children }
         
         return children.filter { $0.filterState.map { $0.hasMatchedDescendant || $0.matchedRange != nil } ?? false }
@@ -336,6 +336,26 @@ extension FileNode {
     }
     
     
+    /// Updates this node’s filter state based on a search string and whether any descendant matched.
+    ///
+    /// - Parameters:
+    ///   - searchString: The text to search for within the file name. 
+    ///   - hasMatchedDescendant: `true` if any descendant of this node matched the search string; otherwise, `false`.
+    /// - Returns: `true` if this node’s name directly matches `searchString`; otherwise, `false`.
+    @discardableResult func updateFilter(with searchString: String, hasMatchedDescendant: Bool) -> Bool {
+        
+        let match: NSRange = (self.parent == nil)
+            ? .notFound
+            : (self.file.name as NSString).range(of: searchString, options: .caseInsensitive)
+        let isMatched = !match.isNotFound
+        
+        self.filterState = FilterState(matchedRange: isMatched ? match : nil,
+                                       hasMatchedDescendant: hasMatchedDescendant)
+        
+        return isMatched
+    }
+    
+    
     /// Recursively searches the receiver and its descendants for names matching the given string.
     ///
     /// - Note: This method updates the `filterState` property of each visited node.
@@ -370,13 +390,7 @@ extension FileNode {
             }
         }
         
-        let match: NSRange = (self.parent == nil)
-        ? .notFound
-        : (self.file.name as NSString).range(of: searchString, options: .caseInsensitive)
-        let isMatched = !match.isNotFound
-        
-        self.filterState = FilterState(matchedRange: isMatched ? match : nil,
-                                       hasMatchedDescendant: !matchedDescendants.isEmpty)
+        let isMatched = self.updateFilter(with: searchString, hasMatchedDescendant: !matchedDescendants.isEmpty)
         
         return isMatched ? ([self] + matchedDescendants) : matchedDescendants
     }

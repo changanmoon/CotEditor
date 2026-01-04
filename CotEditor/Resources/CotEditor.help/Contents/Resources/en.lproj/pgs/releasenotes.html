@@ -21,6 +21,35 @@
 
 <article headingoffset="1">
 	<header>
+		<h1>CotEditor 6.2.1</h1>
+		<p>release: <time>2025-12-27</time></p>
+	</header>
+
+
+	<section>
+		<h2>Improvements</h2>
+
+		<ul>
+			<li>Improve word deletion to treat periods and colons as word delimiters.</li>
+			<li>Update the filter after duplicating a file in the file browser.</li>
+			<li>Update the user guide.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Fixes</h2>
+
+		<ul>
+			<li>Fix an issue in the file browser where files weren’t hidden when the document’s folder name matched the filter string.</li>
+			<li>Fix an issue where the app crashed when cutting rectangular selections at the end of a document with CRLF line endings.</li>
+		</ul>
+	</section>
+</article>
+
+
+<article headingoffset="1">
+	<header>
 		<h1>CotEditor 6.2.0</h1>
 		<p>release: <time>2025-12-14</time></p>
 	</header>
@@ -2355,8 +2384,8 @@
 			<li>Change the system requirement to <strong>macOS Monterey 12 and later</strong>.</li>
 			<li>Improve the Find All button only on macOS Ventura 13 (and later) to enable performing additional commands.</li>
 			<li>Store the state of the “Don’t ask again for this document” option for the inconsistent line endings alert and respect it for future open.<ul>
-				<li><strong>for advanced users</strong>: Now you can also disable the feature entirely within the application by running the following command in Terminal, though it is not recommended:<br>
-					<code>defaults write com.coteditor.CotEditor suppressesInconsistentLineEndingAlert -bool YES</code></li>
+				<li><strong>for advanced users</strong>: Now you can also disable the feature entirely within the application by running the following command in Terminal, though it is not recommended:
+					<pre><code>defaults write com.coteditor.CotEditor suppressesInconsistentLineEndingAlert -bool YES</code></pre></li>
 			</ul></li>
 			<li>Deprecate the <code>length</code> property in AppleScript (Use <code>number of characters of contents</code> instead).</li>
 			<li>Support the split cursor for bidirectional languages in multi-cursor editing.</li>
