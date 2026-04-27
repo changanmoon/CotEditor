@@ -5,13 +5,24 @@ on: [push, pull_request]
 permissions:
   contents: read
 
+env:
+  XCODE_VERSION: "26.4"
+
 jobs:
-  macOS:
+  packages:
+    name: Unit Test for ${{ matrix.package }}
     runs-on: macos-26
-    env:
-      DEVELOPER_DIR: /Applications/Xcode_26.4.app
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - EditorCore
+          - MacUI
+          - Syntax
 
     steps:
+    - name: Set Xcode version
+      run: echo "DEVELOPER_DIR=/Applications/Xcode_${XCODE_VERSION}.app" >> "$GITHUB_ENV"
     - name: Show environments
       run: |
         sw_vers
@@ -19,15 +30,31 @@ jobs:
         swift --version
     - name: Checkout
       uses: actions/checkout@v5
-    - name: Unit Test for EditorCore
+    - name: Cache SwiftPM build products
+      uses: actions/cache@v4
+      with:
+        path: Packages/${{ matrix.package }}/.build
+        key: ${{ runner.os }}-${{ runner.arch }}-xcode-${{ env.XCODE_VERSION }}-spm-${{ matrix.package }}-${{ hashFiles(format('Packages/{0}/Package.swift', matrix.package), format('Packages/{0}/Package.resolved', matrix.package)) }}
+        restore-keys: |
+          ${{ runner.os }}-${{ runner.arch }}-xcode-${{ env.XCODE_VERSION }}-spm-${{ matrix.package }}-
+    - name: Unit Test for ${{ matrix.package }}
       run: |
-        swift test --package-path Packages/EditorCore
-    - name: Unit Test for MacUI
+        swift test --package-path "Packages/${{ matrix.package }}"
+
+  macOS:
+    name: Tests for CotEditor
+    runs-on: macos-26
+
+    steps:
+    - name: Set Xcode version
+      run: echo "DEVELOPER_DIR=/Applications/Xcode_${XCODE_VERSION}.app" >> "$GITHUB_ENV"
+    - name: Show environments
       run: |
-        swift test --package-path Packages/MacUI
-    - name: Unit Test for Syntax
-      run: |
-        swift test --package-path Packages/Syntax
+        sw_vers
+        xcodebuild -version
+        swift --version
+    - name: Checkout
+      uses: actions/checkout@v5
     - name: Unit Test for CotEditor
       run: |
         xcodebuild test -scheme CotEditor CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -skipPackagePluginValidation

@@ -1,6 +1,28 @@
 # Change Log
 
-7.0.1 (unreleased)
+7.0.2 (unreleased)
+--------------------------
+
+### Improvements
+
+- Improve UNIX script pipe handling.
+- Improve responsiveness when performing the Select All Find Matches command in large documents.
+
+
+### Fixes
+
+- Fix an issue where a failed script could leave its name in subsequent console messages.
+- Fix an issue where print settings specified by AppleScript could be ignored.
+- Fix an issue where performing Find All or Highlight All in a read-only document could make the document editable.
+- Fix an issue where regular expression search could get stuck at the same position when matching zero-length text.
+- Fix an issue where regular expression syntax highlighting could be applied incorrectly.
+- Fix an issue where custom keyboard shortcuts using the Forward Delete key could not work.
+- Fix an issue where document open/save scripts could fail to run immediately after launch or script folder changes.
+- [trivial] Fix an issue where key bindings equivalent to the default shortcuts could remain stored as custom settings.
+
+
+
+7.0.1 (815)
 --------------------------
 
 ### Improvements
@@ -13,6 +35,7 @@
 
 - Fix an issue where the default filename extension in the Save dialog didn’t reflect the current syntax.
 - Fix an issue where CotEditor Syntax (.cotsyntax) files could not be imported from the Format settings.
+- Fix an issue where the options selected in the Open dialog might not be applied to all documents when opening multiple documents at once.
 - Fix an issue in the `cot` command where the `--wait` option could fail to return focus to the client terminal in some terminal apps.
 - [trivial] Fix typos in localized labels.
 

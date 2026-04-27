@@ -199,6 +199,98 @@ import Testing
     }
     
     
+    @Test(arguments: [TextFinder.Action.findAll, .highlight])
+    func findAllPreservesReadOnlyState(action: TextFinder.Action) async throws {
+        
+        let textView = TestTextView(string: "foo bar foo")
+        textView.setSelectedRange(NSRange(0..<(textView.string as NSString).length))
+        textView.isEditable = false
+        
+        let finder = TextFinder()
+        finder.client = textView
+        finder.settings.findString = "foo"
+        finder.settings.usesRegularExpression = false
+        
+        _ = try await self.performFindAction(action, with: finder)
+        
+        #expect(!textView.isEditable)
+    }
+    
+    
+    @Test func highlightKeepsExplicitHighlightsAfterIncrementalSearch() async throws {
+        
+        let textView = TestTextView(string: "foo bar foo")
+        textView.setSelectedRange(NSRange(0..<(textView.string as NSString).length))
+        
+        let finder = TextFinder()
+        finder.client = textView
+        finder.settings.findString = "foo"
+        finder.settings.usesRegularExpression = false
+        
+        let notifications = NotificationCenter.default.notifications(named: TextFinder.DidFindMessage.name, object: finder)
+        let iterator = notifications.makeAsyncIterator()
+        
+        finder.incrementalSearch()
+        _ = try #require(await iterator.next())
+        #expect(textView.hasTemporaryBackgroundColor)
+        
+        finder.performAction(.highlight)
+        _ = try #require(await iterator.next())
+        
+        NotificationCenter.default.post(name: NSWindow.didResignKeyNotification, object: nil)
+        try await Task.sleep(for: .seconds(0.1))
+        
+        #expect(textView.hasTemporaryBackgroundColor)
+    }
+    
+    
+    @Test func selectAllUsesFindMatchesCache() async throws {
+        
+        do {
+            let textView = TestTextView(string: "foo bar foo")
+            textView.setSelectedRange(NSRange(0..<(textView.string as NSString).length))
+            
+            let finder = TextFinder()
+            finder.client = textView
+            finder.settings.findString = "foo"
+            finder.settings.usesRegularExpression = false
+            
+            let result = try await self.performFindAction(.selectAll, with: finder)
+            let selectedRanges = textView.selectedRanges.map(\.rangeValue)
+            let cache = try #require(finder.findMatchesCache)
+            
+            #expect(result.count == 2)
+            #expect(selectedRanges == [NSRange(0..<3), NSRange(8..<11)])
+            #expect(cache.matches == selectedRanges)
+        }
+        
+        do {
+            let textView = TestTextView(string: "foo bar foo")
+            textView.setSelectedRange(NSRange(0..<(textView.string as NSString).length))
+            
+            let finder = TextFinder()
+            finder.client = textView
+            finder.settings.findString = "foo"
+            finder.settings.usesRegularExpression = false
+            
+            try await confirmation("No stale find result", expectedCount: 0) { confirm in
+                let notifications = NotificationCenter.default.notifications(named: TextFinder.DidFindMessage.name, object: finder)
+                let observationTask = Task { @MainActor in
+                    for await _ in notifications {
+                        confirm()
+                    }
+                }
+                
+                finder.performAction(.selectAll)
+                textView.textStorage?.replaceCharacters(in: NSRange(0..<3), with: "bar")
+                
+                try await Task.sleep(for: .seconds(0.1))
+                observationTask.cancel()
+            }
+        }
+    }
+    
+    
     // MARK: Private Methods
     
     private func performFindAction(_ action: TextFinder.Action, with finder: TextFinder) async throws -> FindResult {
@@ -221,7 +313,7 @@ import Testing
     init(string: String) {
         
         let textStorage = NSTextStorage(string: string)
-        let layoutManager = NSLayoutManager()
+        let layoutManager = TestLayoutManager()
         let textContainer = NSTextContainer()
         
         layoutManager.addTextContainer(textContainer)
@@ -242,4 +334,20 @@ import Testing
     
     
     override func showFindIndicator(for charRange: NSRange) { }
+    
+    
+    var hasTemporaryBackgroundColor: Bool {
+        
+        guard let layoutManager else { return false }
+        
+        return (0..<(self.string as NSString).length).contains {
+            layoutManager.temporaryAttribute(.backgroundColor, atCharacterIndex: $0, effectiveRange: nil) != nil
+        }
+    }
+}
+
+
+private final class TestLayoutManager: NSLayoutManager, ValidationIgnorable {
+    
+    var ignoresDisplayValidation = false
 }

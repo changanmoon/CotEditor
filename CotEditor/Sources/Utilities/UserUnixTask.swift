@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2024 1024jp
+//  © 2022-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,17 +24,40 @@
 //
 
 import Foundation
+import Synchronization
 
 actor UserUnixTask {
     
+    // MARK: Private Types
+    
+    private enum State: Equatable {
+        
+        case ready
+        case executing
+        case finished
+    }
+    
+    
+    private struct InputState: Sendable {
+        
+        var offset: Data.Index = 0
+        var isFinished = false
+    }
+    
+    
     // MARK: Private Properties
+    
+    /// Chunk size for piping input; matches a typical macOS pipe buffer.
+    private static let inputChunkSize = 64 * 1024
     
     private let task: NSUserUnixTask
     private let inputPipe = Pipe()
     private let outputPipe = Pipe()
     private let errorPipe = Pipe()
-    private var buffer: AsyncStream<Data>?
-    private var isExecuting = false
+    private var outputBuffer: AsyncStream<Data>?
+    private var errorBuffer: AsyncStream<Data>?
+    private var state: State = .ready
+    private var hasInput = false
     
     
     // MARK: Public Methods
@@ -53,16 +76,29 @@ actor UserUnixTask {
     
     /// Executes the user script.
     ///
-    /// - Parameter arguments: An array of Strings containing the script arguments.
-    func execute(arguments: [String] = []) async throws {
+    /// - Parameters:
+    ///   - arguments: An array of Strings containing the script arguments.
+    ///   - capturesOutput: Whether to capture the standard output.
+    func execute(arguments: [String] = [], capturesOutput: Bool = true) async throws {
         
-        guard !self.isExecuting else { return assertionFailure() }
+        guard self.state == .ready else { return assertionFailure("The task can be executed only once.") }
         
-        self.isExecuting = true
-        defer { self.isExecuting = false }
-
-        // read output asynchronously for safe with huge output
-        self.buffer = self.outputPipe.readingStream
+        self.state = .executing
+        defer { self.state = .finished }
+        
+        // read output and error asynchronously to safely handle huge output
+        if capturesOutput {
+            self.outputBuffer = self.outputPipe.readingStream
+        } else {
+            self.outputBuffer = nil
+            self.outputPipe.drain()
+        }
+        self.errorBuffer = self.errorPipe.readingStream
+        
+        // close the writing end so that scripts reading stdin receive EOF
+        if !self.hasInput {
+            try self.inputPipe.fileHandleForWriting.close()
+        }
         
         do {
             try await self.task.execute(withArguments: arguments)
@@ -79,53 +115,108 @@ actor UserUnixTask {
     /// - Parameter input: The string to input.
     func pipe(input: String) {
         
+        guard
+            self.state == .ready,
+            !self.hasInput
+        else { return assertionFailure("Input must be piped only once before executing the task.") }
+        
+        self.hasInput = true
         let data = Data(input.utf8)
         
-        self.inputPipe.fileHandleForWriting.writeabilityHandler = { handle in
+        guard !data.isEmpty else {
             do {
-                try handle.write(contentsOf: data)
-                try handle.close()
+                try self.inputPipe.fileHandleForWriting.close()
             } catch {
                 assertionFailure(error.localizedDescription)
             }
-            handle.writeabilityHandler = nil
+            return
+        }
+        
+        // write input in chunks so the pipe buffer doesn’t block on large input
+        let chunkSize = Self.inputChunkSize
+        let inputState = Mutex(InputState())
+        self.inputPipe.fileHandleForWriting.writeabilityHandler = { handle in
+            let shouldClose = inputState.withLock { state in
+                guard !state.isFinished else { return false }
+                
+                let endIndex = min(state.offset + chunkSize, data.endIndex)
+                
+                do {
+                    try handle.write(contentsOf: data[state.offset..<endIndex])
+                    state.offset = endIndex
+                } catch {
+                    assertionFailure(error.localizedDescription)
+                    state.offset = data.endIndex
+                }
+                
+                if state.offset == data.endIndex {
+                    state.isFinished = true
+                    return true
+                }
+                
+                return false
+            }
+            
+            if shouldClose {
+                handle.writeabilityHandler = nil
+                try? handle.close()
+            }
         }
     }
     
     
     /// The standard output.
+    ///
+    /// - Note: Available only after `execute()` finishes; consumed on first read.
     var output: String? {
         
         get async {
-            guard let buffer else { return nil }
+            guard self.state == .finished else {
+                assertionFailure("Output must be read after executing the task.")
+                return nil
+            }
             
-            // clear buffer so it is consumed only once
-            self.buffer = nil
+            guard let outputBuffer else { return nil }
             
-            async let data = buffer.reduce(into: Data()) { $0 += $1 }
+            // clear output buffer so it is consumed only once
+            self.outputBuffer = nil
             
-            return String(data: await data, encoding: .utf8)
+            let data = await outputBuffer.reduce(into: Data()) { $0 += $1 }
+            
+            return String(data: data, encoding: .utf8)
         }
     }
     
     
     /// The standard error.
+    ///
+    /// - Note: Available only after `execute()` finishes; consumed on first read.
     var error: String? {
         
-        guard
-            let data = try? self.errorPipe.fileHandleForReading.readToEnd(),
-            let string = String(data: data, encoding: .utf8),
-            !string.isEmpty
-        else { return nil }
-        
-        return string
+        get async {
+            guard self.state == .finished else {
+                assertionFailure("Error output must be read after executing the task.")
+                return nil
+            }
+            
+            guard let errorBuffer else { return nil }
+            
+            // clear error buffer so it is consumed only once
+            self.errorBuffer = nil
+            
+            let data = await errorBuffer.reduce(into: Data()) { $0 += $1 }
+            
+            guard !data.isEmpty else { return nil }
+            
+            return String(data: data, encoding: .utf8)
+        }
     }
 }
 
 
 private extension Pipe {
     
-    /// Creates asynchronous stream for the standard output.
+    /// An asynchronous stream of data read from the pipe.
     var readingStream: AsyncStream<Data> {
         
         AsyncStream { continuation in
@@ -137,6 +228,18 @@ private extension Pipe {
                 } else {
                     continuation.yield(data)
                 }
+            }
+        }
+    }
+    
+    
+    /// Reads and discards the pipe output.
+    func drain() {
+        
+        self.fileHandleForReading.readabilityHandler = { handle in
+            // read and discard available data; finish on EOF
+            if handle.availableData.isEmpty {
+                handle.readabilityHandler = nil
             }
         }
     }

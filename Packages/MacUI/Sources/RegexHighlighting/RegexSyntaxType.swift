@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2025 1024jp
+//  © 2018-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -52,12 +52,22 @@ enum RegexSyntaxType: CaseIterable {
             .map(\.range)
         
         if case .search = mode {
+            let quotedRanges = string.rangesForRegularExpressionQuotes()
+            
             switch self {
                 case .character:
-                    ranges += string.rangesForRegularExpressionBrackets(includingSymbols: false)
+                    ranges += string.rangesForRegularExpressionBrackets(includingSymbols: false, excluding: quotedRanges)
                 case .symbol:
-                    ranges += string.rangesForRegularExpressionBrackets(includingSymbols: true)
+                    ranges += string.rangesForRegularExpressionBrackets(includingSymbols: true, excluding: quotedRanges)
                 default: break
+            }
+            
+            if !quotedRanges.isEmpty {
+                ranges.removeAll { range in
+                    quotedRanges.contains { quotedRange in
+                        quotedRange.location <= range.location && NSMaxRange(range) <= NSMaxRange(quotedRange)
+                    }
+                }
             }
         }
         
@@ -80,13 +90,13 @@ enum RegexSyntaxType: CaseIterable {
                         // -> [abc] will be extracted in ranges(in:) since regex cannot parse nested []
                         [
                             #"\."#,  // .
-                            #"\\[^AbGkZzQE1-9]"#,  // all escaped characters
+                            #"\\[^ABbGkZzQE1-9]"#,  // all escaped characters
                             #"\\[sdDefnrsStwWX]"#,  // \s, \d, ...
                             #"\\v"#,  // \v
                             #"\\\\"#,  // \\
                             #"\\c[a-z]"#,  // \cX (control)
-                            #"\\N\{[a-zA-Z0-9 ]+\}"#,  // \N{UNICODE CHARACTER NAME}
-                            #"\\[pP]\{[a-zA-Z0-9 ]+\}"#,  // \p{UNICODE PROPERTY NAME}
+                            #"\\N\{[a-zA-Z0-9 -]+\}"#,  // \N{UNICODE CHARACTER NAME}
+                            #"\\[pP]\{[a-zA-Z0-9 _=-]+\}"#,  // \p{UNICODE PROPERTY NAME}
                             #"\\u[0-9a-fA-F]{4}"#,  // \uhhhh (h: hex)
                             #"\\U[0-9a-fA-F]{8}"#,  // \Uhhhhhhhh (h: hex)
                             #"\\x\{[0-9a-fA-F]{1,6}\}"#,  // \x{hhhh} (h: hex)
@@ -97,7 +107,7 @@ enum RegexSyntaxType: CaseIterable {
                         [
                             #"\$[0-9]+"#,  // $0
                             #"\\[1-9]+"#,  // \1
-                            #"\\k<[a-zA-Z][a-zA-Z0-9]+>"#,  // \k<name>
+                            #"\\k<[a-zA-Z][a-zA-Z0-9]*>"#,  // \k<name>
                         ]
                     case .symbol:
                         // -> [abc] will be extracted in ranges(in:) since regex cannot parse nested []
@@ -117,7 +127,7 @@ enum RegexSyntaxType: CaseIterable {
                         // -> `$` is also used for .backReference.
                         [
                             #"[$^]"#,  // ^ $
-                            #"\\[AbGZz]"#,  // \A, \b, ...
+                            #"\\[ABbGZz]"#,  // \A, \b, ...
                         ]
                 }
                 
@@ -137,17 +147,56 @@ enum RegexSyntaxType: CaseIterable {
 
 private extension StringProtocol {
     
+    /// Finds the ranges quoted by `\Q...\E` pattern in the regular expression.
+    ///
+    /// - Returns: The matched ranges, excluding the surrounding `\Q` and `\E`.
+    func rangesForRegularExpressionQuotes() -> [NSRange] {
+        
+        var quoteStartIndex: Index?
+        var quoteRanges: [Range<Index>] = []
+        var lastIndex: Index?
+        var lastCharacter: Character?
+        var backslashCount = 0
+        
+        for (index, character) in zip(self.indices, self) {
+            if lastCharacter == "\\", !backslashCount.isMultiple(of: 2), let lastIndex {
+                switch (character, quoteStartIndex) {
+                    case ("Q", .none):
+                        quoteStartIndex = self.index(after: index)
+                    case ("E", .some(let startIndex)):
+                        quoteRanges.append(startIndex..<lastIndex)
+                        quoteStartIndex = nil
+                    default:
+                        break
+                }
+            }
+            
+            backslashCount = (character == "\\") ? (backslashCount + 1) : 0
+            lastIndex = index
+            lastCharacter = character
+        }
+        
+        if let quoteStartIndex {
+            quoteRanges.append(quoteStartIndex..<self.endIndex)
+        }
+        
+        return quoteRanges.map { NSRange($0, in: self) }
+    }
+    
+    
     /// Finds the ranges of `[^abc]` pattern in the regular expression.
     ///
-    /// - Parameter includingSymbols: Whether the result ranges including `[]` and `^`.
+    /// - Parameters:
+    ///   - includingSymbols: Whether the result ranges including `[]` and `^`.
+    ///   - excludedRanges: The ranges to ignore.
     /// - Returns: The matched ranges.
-    func rangesForRegularExpressionBrackets(includingSymbols: Bool) -> [NSRange] {
+    func rangesForRegularExpressionBrackets(includingSymbols: Bool, excluding excludedRanges: [NSRange] = []) -> [NSRange] {
         
         var index = self.startIndex
         var braceRanges: [Range<Index>] = []
         
         while index != self.endIndex {
-            guard let (range, isNegative) = self.rangeForRegularExpressionBrackets(starting: index) else { break }
+            guard let (range, isNegative) = self.rangeForRegularExpressionBrackets(starting: index, excluding: excludedRanges) else { break }
             
             if includingSymbols {
                 braceRanges.append(range)
@@ -166,9 +215,11 @@ private extension StringProtocol {
     
     /// Finds the range of the first `[^abc]` pattern in the regular expression after the given index.
     ///
-    /// - Parameter searchIndex: The character index to start finding.
+    /// - Parameters:
+    ///   - searchIndex: The character index to start finding.
+    ///   - excludedRanges: The ranges to ignore.
     /// - Returns: The found range and if the found pattern is a negative pattern (not `[abc]` but `[^abc]`), or `nil` if not found.
-    private func rangeForRegularExpressionBrackets(starting searchIndex: Index) -> (range: Range<Index>, isNegative: Bool)? {
+    private func rangeForRegularExpressionBrackets(starting searchIndex: Index, excluding excludedRanges: [NSRange] = []) -> (range: Range<Index>, isNegative: Bool)? {
         
         assert(searchIndex == self.startIndex || self[self.index(before: searchIndex)] != "\\")
         
@@ -178,6 +229,12 @@ private extension StringProtocol {
         var isEscaped = false
         
         for index in self[searchIndex...].indices {
+            if !excludedRanges.isEmpty {
+                let location = index.utf16Offset(in: self)
+                
+                guard !excludedRanges.contains(where: { $0.contains(location) }) else { continue }
+            }
+            
             switch (self[index], startIndex) {
                 case ("\\", _):
                     isFirst = false

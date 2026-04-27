@@ -97,7 +97,7 @@ extension NSTextView: EditorCounter.Source { }
     // MARK: Private Properties
     
     private let isInitialized: Mutex<Bool> = .init(false)
-    private let readingEncoding: Mutex<String.Encoding?>  // encoding to read document file
+    private let readingEncoding: Mutex<String.Encoding?> = .init(nil)  // encoding to read document file
     private let fileData: Mutex<Data?> = .init(nil)
     private var shouldSaveEncodingXattr = true
     private var isExecutable = false
@@ -124,26 +124,16 @@ extension NSTextView: EditorCounter.Source { }
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
-        let openOptions = (DocumentController.shared as! DocumentController).openOptions
-        
-        self.isEditable = openOptions?.isReadOnly != true
-        
         let lineEnding = LineEnding.allCases[safe: UserDefaults.standard[.lineEndCharCode]] ?? .lf
+        
+        self.fileEncoding = EncodingManager.shared.defaultEncoding
         self.lineEnding = lineEnding
+        self.syntaxName = SyntaxName.none
+        self.mode = .kind(.general)
         
         self.syntaxController = SyntaxController(textStorage: self.textStorage, syntax: Syntax.none, name: SyntaxName.none)
-        self.syntaxName = SyntaxName.none
-        
-        // use the encoding selected by the user in the open panel, if exists
-        self.fileEncoding = EncodingManager.shared.defaultEncoding
-        self.readingEncoding = .init(openOptions?.encoding)
-        
-        // observe for inconsistent line endings
         self.lineEndingScanner = .init(textStorage: self.textStorage, lineEnding: lineEnding)
-        
         self.counter = EditorCounter()
-        
-        self.mode = .kind(.general)
         
         super.init()
         
@@ -160,7 +150,6 @@ extension NSTextView: EditorCounter.Source { }
                 .sink { [weak self] _ in self?.invalidateMode() },
         ]
         
-        // observe syntax update
         self.syntaxUpdateObserver = NotificationCenter.default.publisher(for: .didUpdateSettingNotification, object: SyntaxManager.shared)
             .map { $0.userInfo!["change"] as! SettingChange }
             .filter { [weak self] change in change.old == self?.syntaxName }
@@ -349,9 +338,10 @@ extension NSTextView: EditorCounter.Source { }
         let attributes = try FileManager.default.attributesOfItem(atPath: url.path(percentEncoded: false))  // FILE_READ
         let extendedAttributes = ExtendedFileAttributes(dictionary: attributes)
         let isInitialized = self.isInitialized.withLock(\.self)
+        let openOptions = PendingOpenOptions.options(for: url)
         
         let strategy: String.DecodingStrategy = {
-            if let encoding = self.readingEncoding.withLock(\.self) {
+            if let encoding = self.readingEncoding.withLock(\.self) ?? openOptions?.encoding {
                 return .specific(encoding)
             }
             
@@ -385,6 +375,9 @@ extension NSTextView: EditorCounter.Source { }
                 self.fileAttributes = fileAttributes
                 self.isExecutable = fileAttributes.permissions.user.contains(.execute)
             }
+            if let openOptions {
+                self.isEditable = !openOptions.isReadOnly
+            }
             
             // do not save `com.apple.TextEncoding` extended attribute if it doesn't exists
             self.shouldSaveEncodingXattr = (extendedAttributes.encoding != nil)
@@ -412,8 +405,9 @@ extension NSTextView: EditorCounter.Source { }
             
             // determine syntax (only on the first file open)
             if !isInitialized {
-                let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, content: string)
-                self.setSyntax(name: syntaxName ?? SyntaxName.none)
+                if let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, content: string) {
+                    self.setSyntax(name: syntaxName)
+                }
                 self.isInitialized.withLock { $0 = true }
             }
             
@@ -501,7 +495,7 @@ extension NSTextView: EditorCounter.Source { }
             if error != nil { return }
             
             // store file data in order to check the file content identity in `presentedItemDidChange()`
-            if saveOperation != .autosaveElsewhereOperation {
+            if saveOperation.updatesDocumentFile {
                 assert(self.lastSavedData != nil)
                 self.fileData.withLock { $0 = self.lastSavedData }
             }
@@ -537,6 +531,8 @@ extension NSTextView: EditorCounter.Source { }
                 try? url.setExtendedAttribute(data: self.isVerticalText ? Data([1]) : nil, for: FileExtendedAttributeName.verticalText)
             }
             
+            guard saveOperation.updatesDocumentFile else { return }
+            
             // get the latest file attributes
             do {
                 let attributes = try FileManager.default.attributesOfItem(atPath: url.path(percentEncoded: false))  // FILE_ACCESS
@@ -562,25 +558,15 @@ extension NSTextView: EditorCounter.Source { }
         
         savePanel.allowsOtherFileTypes = true
         
-        // -> At least in macOS 26.2, the default filename is already set
-        if #unavailable(macOS 26.2) {
-            savePanel.allowedContentTypes = self.fileType
-                .flatMap { self.fileNameExtension(forType: $0, saveOperation: .saveOperation) }
-                .flatMap { UTType(filenameExtension: $0, conformingTo: .data) }
-                .map { [$0] } ?? []
-            
-            // avoid the Hide Extension option removes actual filename extension (2024-05, macOS 14)
-            savePanel.canSelectHiddenExtension = false
-            savePanel.isExtensionHidden = false
-        }
-        
         // workaround the issue that NSDocument cannot resolve the file extension
         // from a dynamic UTType, falling back to .txt (2026-03, macOS 26)
-        if let fileType, let type = UTType(fileType), type.isDynamic,
-           let fileExtension = type.preferredFilenameExtension
-        {
+        if let type = self.fileType.flatMap(UTType.init) {
             savePanel.allowedContentTypes.append(type)
-            savePanel.nameFieldStringValue = savePanel.nameFieldStringValue.deletingPathExtension + ".\(fileExtension)"
+            
+            // prioritize the user's preferred extension
+            if self.fileURL == nil, let fileExtension = self.syntaxController.syntax.fileMap.extensions?.first {
+                savePanel.nameFieldStringValue = savePanel.nameFieldStringValue.deletingPathExtension + ".\(fileExtension)"
+            }
         }
         
         // set accessory view
@@ -590,15 +576,6 @@ extension NSTextView: EditorCounter.Source { }
         let accessoryView = NSHostingView(rootView: accessory)
         accessoryView.sizingOptions = .intrinsicContentSize
         savePanel.accessoryView = accessoryView
-        
-        // let save panel accept any file extension
-        // -> Otherwise, the file extension for `.allowedContentTypes` is automatically added
-        //    even when the user specifies another one (2023-09, macOS 14).
-        if #unavailable(macOS 26.2) {
-            DispatchQueue.main.async { [weak savePanel] in
-                savePanel?.allowedContentTypes = []
-            }
-        }
         
         return true
     }
@@ -721,7 +698,8 @@ extension NSTextView: EditorCounter.Source { }
         Task { try? await textStorage.linkURLs() }
         
         // create print operation
-        let printInfo = self.printInfo
+        let printInfo = self.printInfo.copy() as! NSPrintInfo
+        PrintPanelAccessoryController.applyDefaultSettings(to: printInfo)
         printInfo[.printsInvisibles] = viewController.showsInvisibles
         printInfo[.printsLineNumbers] = viewController.showsLineNumber
         printInfo.dictionary().addEntries(from: printSettings)
@@ -1101,9 +1079,7 @@ extension NSTextView: EditorCounter.Source { }
         do {
             syntax = try SyntaxManager.shared.setting(name: name)
         } catch {
-            // present error dialog if failed
-            self.presentErrorAsSheet(error)
-            return
+            return self.presentErrorAsSheet(error)
         }
         
         guard syntax != self.syntaxController.syntax else { return }

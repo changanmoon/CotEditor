@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2024 1024jp
+//  © 2022-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -98,5 +98,64 @@ struct RegexSyntaxTests {
         #expect(symbol.ranges(in: "(?<=\\[)a]") == [NSRange(location: 0, length: 4),
                                                     NSRange(location: 0, length: 1),
                                                     NSRange(location: 6, length: 1)])
+    }
+    
+    
+    @Test func highlightWordBoundaryAsAnchor() {
+        
+        let string = "\\bword\\B"
+        
+        #expect(RegexSyntaxType.anchor.ranges(in: string) == [NSRange(location: 0, length: 2),
+                                                              NSRange(location: 6, length: 2)])
+        #expect(RegexSyntaxType.character.ranges(in: string) == [])
+    }
+    
+    
+    @Test func highlightNamedBackReference() {
+        
+        let string = "\\k<a> \\k<ab>"
+        
+        #expect(RegexSyntaxType.backReference.ranges(in: string) == [NSRange(location: 0, length: 5),
+                                                                     NSRange(location: 6, length: 6)])
+    }
+    
+    
+    @Test func highlightUnicodePropertyName() {
+        
+        let properties = ["\\p{gc=L}", "\\P{Lowercase_Letter}", "\\p{White-Space}"]
+        
+        for property in properties {
+            #expect(RegexSyntaxType.character.ranges(in: property).contains(NSRange(..<property.utf16.count)))
+        }
+    }
+    
+    
+    @Test func highlightUnicodeCharacterName() {
+        
+        let character = "\\N{CJK UNIFIED IDEOGRAPH-4E00}"
+        
+        #expect(RegexSyntaxType.character.ranges(in: character).contains(NSRange(..<character.utf16.count)))
+    }
+    
+    
+    @Test func ignoreSyntaxInQuote() {
+        
+        let string = #"\Q.*+?()[]\E+"#
+        
+        #expect(RegexSyntaxType.symbol.ranges(in: string) == [NSRange(location: 0, length: 2),
+                                                              NSRange(location: 10, length: 2)])
+        #expect(RegexSyntaxType.quantifier.ranges(in: string) == [NSRange(location: 12, length: 1)])
+        #expect(RegexSyntaxType.character.ranges(in: string) == [])
+    }
+    
+    
+    @Test func ignoreQuotedBracket() {
+        
+        let string = #"\Q[\E] [a]"#
+        
+        #expect(RegexSyntaxType.symbol.ranges(in: string) == [NSRange(location: 0, length: 2),
+                                                              NSRange(location: 3, length: 2),
+                                                              NSRange(location: 7, length: 3)])
+        #expect(RegexSyntaxType.character.ranges(in: string) == [NSRange(location: 8, length: 1)])
     }
 }
