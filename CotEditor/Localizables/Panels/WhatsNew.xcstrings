@@ -158,6 +158,12 @@
             "state" : "needs_review",
             "value" : "Bewaar een altijd actuele kopie van je instellingen in iCloud om ze op je andere Macs te importeren wanneer je maar wilt."
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在iCloud中儲存最新的設定副本，讓你隨時在其他Mac上輸入。"
+          }
         }
       }
     },
@@ -204,6 +210,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Je instellingen, slechts één import verwijderd"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你的設定，只需輸入即可"
           }
         }
       }
@@ -252,6 +264,12 @@
             "state" : "needs_review",
             "value" : "Open bestanden op een externe computer met `rmate` via SSH en bewaar je wijzigingen daar direct."
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用`rmate`透過SSH開啟遙距電腦上的檔案，並直接將你的變更儲存回原處。"
+          }
         }
       }
     },
@@ -298,6 +316,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bewerk externe bestanden rechtstreeks op je Mac"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "直接於你的Mac上編輯遙距檔案"
           }
         }
       }

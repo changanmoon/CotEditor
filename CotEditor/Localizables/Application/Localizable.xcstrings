@@ -2119,7 +2119,7 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "插入"
           }
         }
@@ -14975,6 +14975,12 @@
             "state" : "needs_review",
             "value" : "Sommige externe bestanden konden niet worden geopend."
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "部份遙距檔案無法開啟。"
+          }
         }
       }
     },
@@ -15096,6 +15102,18 @@
                 "stringUnit" : {
                   "state" : "needs_review",
                   "value" : "Eén rmate-opdracht kan maximaal %lld bestanden tegelijk openen."
+                }
+              }
+            }
+          }
+        },
+        "zh-HK" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "單個rmate命令一次最多可以開啟%lld個檔案。"
                 }
               }
             }
