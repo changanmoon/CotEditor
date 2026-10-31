@@ -7,6 +7,7 @@
 
 - Support editing remote files with `rmate` over SSH port forwarding, enabled in Integration settings.
 - Add an option to automatically save a copy of settings in iCloud for manual import on other Macs.
+- Support customizing keyboard shortcuts for text editing commands, such as moving the insertion point and deleting text, in Shortcuts settings.
 
 
 ### Improvements
@@ -15,6 +16,17 @@
 - Add an Integration pane to the settings window for managing integration with external tools.
 - Move settings import and export from the File menu to General settings.
 - Update the Shortcuts settings layout.
+- Add a context menu to the list in Shortcuts settings to restore the default shortcut of a single command.
+
+
+### Fixes
+
+- Fix an issue where pinch zooming did not synchronize the text size between the find and replace fields in the Find window.
+- Fix an issue where Find All highlights remained in the document after closing the search results.
+- Fix an issue where a cancelled search within multiple selections could continue searching subsequent selections.
+- Fix incorrect progress indication when searching or replacing within selections.
+- Fix an issue where syntax highlighting and outline parsing could start after closing a document.
+- Fix an issue where keyboard shortcuts with function keys, arrow keys, or other navigation keys could not be set in Shortcuts and Snippets settings.
 
 
 
